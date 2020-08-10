@@ -8,11 +8,15 @@ class SetupData:
         self.url = None
         self.author = None
         self.authorEmail = None
+        self.package = None
         self.entryPoint = None
     
     def setName(self, name: str):
         self.name = name
         return self
+        
+    def getVersion(self) -> str:
+        return self.version
 
     def getName(self) -> str:
         return self.name
@@ -50,6 +54,13 @@ class SetupData:
 
     def setAuthorEmail(self, authorEmail: str):
         self.authorEmail = authorEmail
+        return self
+
+    def getPackage(self) -> str:
+        return self.package
+
+    def setPackage(self, package: str):
+        self.package = package
         return self
 
     def getEntryPoint(self) -> str:
