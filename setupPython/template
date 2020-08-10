@@ -1,0 +1,22 @@
+from setuptools import setup
+
+VERSION = {0}
+
+def readme():
+    with open("README.md") as f:
+        return f.read()
+
+setup(
+    name="{1}",
+    version={2},
+    description="{3}",
+    long_description_content_type="text/markdown",
+    long_description=readme(),
+    keywords="Download AWS S3 Bucket Amazon",
+    url="https://github.com/danilocgsilva/s3-mass-download",
+    author="Danilo Silva",
+    author_email="contact@danilocgsilva.me",
+    packages=["src"],
+    entry_points={"console_scripts": ["dws3bucket=src.__main__:main"],},
+    include_package_data=True
+)

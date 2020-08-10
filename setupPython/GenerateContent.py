@@ -1,7 +1,7 @@
 from setupPython.SetupData import SetupData
 
 
-class GenerateFile:
+class GenerateContent:
 
     def __init__(self):
         self.setupData = None
@@ -11,6 +11,7 @@ class GenerateFile:
         self.setSetupData - setupData
         return self
 
-    def generateFile(self):
+    def generate(self):
         file = open(self.fileName)
+        file.write()
         file.close()
