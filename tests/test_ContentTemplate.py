@@ -45,9 +45,8 @@ class test_ContentTemplate(unittest.TestCase):
         self.assertEqual(expected_string, returned_string)
 
     def test_getPackageEntryPoints(self):
-        expected_string = "    entry_points={\"console_scripts\": [\"{0}={1}.__main__:main\"],},"
+        expected_string = "[\"{0}={1}.__main__:main\"],"
         returned_string = self.contentTemplate.getEntryPoints()
-
 
         self.assertEqual(expected_string, returned_string)
 
@@ -115,7 +114,7 @@ class test_ContentTemplate(unittest.TestCase):
     def test_setEntryPoint(self):
         package = "thepackage"
         entry_point = "executehere"
-        expected_template = "    entry_points={\"console_scripts\": [\"executehere=thepackage.__main__:main\"],},"
+        expected_template = "[\"executehere=thepackage.__main__:main\"],"
         self.contentTemplate.setPackage(package)
         self.contentTemplate.setEntryPoint(entry_point)
         resulting_template = self.contentTemplate.getEntryPoints()

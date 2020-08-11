@@ -1,4 +1,5 @@
 from setupPython.helpers import getContentTemplateList
+import re
 
 
 class ContentTemplate:
@@ -13,7 +14,7 @@ class ContentTemplate:
         self.TEMPLATE_AUTHOR_POSITION = 16
         self.TEMPLATE_AUTHOREMAIL_POSITION = 17
         self.TEMPLATE_PACKAGE_POSITION = 18
-        self.TEMPLATE_ENTRYPOINTS_POSITION = 19
+        self.TEMPLATE_ENTRYPOINTS_POSITION = 20
 
     def getContentTemplateList(self) -> list:
         return self.contentList
@@ -46,7 +47,17 @@ class ContentTemplate:
         return self.contentList[self.TEMPLATE_ENTRYPOINTS_POSITION]
 
     def getPackageValue(self) -> str:
-        return self.contentList[self.TEMPLATE_PACKAGE_POSITION].split("{")[1].split("}")[0]
+
+        contentList = self.contentList[self.TEMPLATE_PACKAGE_POSITION]
+
+        if re.search('{"', contentList):
+            splittingCharacter = '{'
+            splittingCharacterOposite = '}'
+        else:
+            splittingCharacter = '"'
+            splittingCharacterOposite = '"'
+
+        return contentList.split(splittingCharacter)[1].split(splittingCharacterOposite)[0]
 
     def setVersion(self, version: str):
         versionTemplate = self.getVersionTemplate()
@@ -89,8 +100,12 @@ class ContentTemplate:
         return self
 
     def setEntryPoint(self, entryPoint: str):
+
         entryPointTemplate = self.getEntryPoints()
-        if entryPointTemplate == "    packages=[\"{0}\"],":
+
+        if self.getPackageTemplate() == "    packages=[\"{0}\"],":
             raise Exception("The setPackageEntryPoints cannot be performed if you do not set the package template first with setPackageTemplate method")
+        
         self.contentList[self.TEMPLATE_ENTRYPOINTS_POSITION] = entryPointTemplate.format(entryPoint, self.getPackageValue())
+
         return self
