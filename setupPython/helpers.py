@@ -16,7 +16,7 @@ def getContentTemplateList() -> list:
     contentList.append("    description=\"{0}\",")
     contentList.append("    long_description_content_type=\"text/markdown\",")
     contentList.append("    long_description=readme(),")
-    contentList.append("    keywords=\"{0},\"")
+    contentList.append("    keywords=\"{0}\",")
     contentList.append("    url=\"{0}\",")
     contentList.append("    author=\"{0}\",")
     contentList.append("    author_email=\"{0}\",")
