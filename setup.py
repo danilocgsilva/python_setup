@@ -17,7 +17,7 @@ setup(
     url="https://github.com/danilocgsilva/python_setup",
     author="Danilo Silva",
     author_email="contato@danilocgsilva.me",
-    packages=["src"],
-    entry_points={"console_scripts": ["spython=setupPython.__main__:main"]},
+    packages=["setupPython"],
+    entry_points={"console_scripts": ["setupPython=setupPython.__main__:main"]},
     include_package_data=True
 )
