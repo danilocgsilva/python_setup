@@ -3,6 +3,7 @@ import sys
 sys.path.insert(1, "..")
 from setupPython.ContentTemplate import ContentTemplate
 from setupPython.SetupData import SetupData
+from tests.helpers import getPreparedSetupDate
 
 
 class test_ContentTemplateInitialData(unittest.TestCase):
@@ -11,8 +12,14 @@ class test_ContentTemplateInitialData(unittest.TestCase):
         self.contentTemplate = ContentTemplate()
 
     def test_setSetupDataFluentInterface(self):
-        returnedObject = self.contentTemplate.setSetupData(SetupData())
+        fullfilled_data = getPreparedSetupDate()
+        returnedObject = self.contentTemplate.setSetupData(fullfilled_data)
         self.assertTrue(isinstance(returnedObject, ContentTemplate))
+
+    def test_setSetupDataNotFullfilled(self):
+        empty_setup_data = SetupData()
+        with self.assertRaises(Exception):
+            self.contentTemplate.setSetupData(empty_setup_data)
 
     def test_getVersionTemplate(self):
         expected_string = "VERSION = {0}"

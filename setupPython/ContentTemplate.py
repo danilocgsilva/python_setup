@@ -18,6 +18,10 @@ class ContentTemplate:
         self.setupData = None
 
     def setSetupData(self, setupData: SetupData):
+
+        if not setupData.isFullFilled():
+            raise Exception("There are missing informations in the setupData object.")
+
         self.setupData = setupData
 
         self.contentList[self.TEMPLATE_NAME_POSITON] =\
