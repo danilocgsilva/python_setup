@@ -18,24 +18,14 @@ class test_GenerateFile(unittest.TestCase):
         returnedObject = self.generateFile.setContentTemplate(contentTemplate)
         self.assertTrue(isinstance(returnedObject, GenerateFile))
 
-    def test_writeFileCorrectContent(self):
+    def test_getSetupContent(self):
         self.maxDiff = 10000
 
         contentTemplate = ContentTemplate()
         contentTemplate.setSetupData(getPreparedSetupDate())
         self.generateFile.setContentTemplate(contentTemplate)
 
-        temporaryFilePath = os.path.join(tempfile.gettempdir(), "setupTest.py")
-
-        if os.path.exists(temporaryFilePath):
-            os.remove(temporaryFilePath)
-
-        self.generateFile.writeFile(temporaryFilePath)
-
-        fileToFetch = open(temporaryFilePath, "r")
-        fetchedContent = fileToFetch.read()
-
-        fileToFetch.close()
+        returnedContent = self.generateFile.getSetupContent()
 
         expected_content = '''from setuptools import setup
 
@@ -61,5 +51,5 @@ setup(
 )
 '''
 
-        self.assertEqual(expected_content, fetchedContent)
+        self.assertEqual(expected_content, returnedContent)
 
