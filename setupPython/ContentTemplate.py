@@ -1,4 +1,5 @@
 import re
+from setupPython.SetupData import SetupData
 
 
 class ContentTemplate:
@@ -14,6 +15,39 @@ class ContentTemplate:
         self.TEMPLATE_AUTHOREMAIL_POSITION = 17
         self.TEMPLATE_PACKAGE_POSITION = 18
         self.TEMPLATE_ENTRYPOINTS_POSITION = 20
+        self.setupData = None
+
+    def setSetupData(self, setupData: SetupData):
+        self.setupData = setupData
+
+        self.contentList[self.TEMPLATE_NAME_POSITON] =\
+            self.contentList[self.TEMPLATE_NAME_POSITON].format(self.setupData.getName())
+
+        self.contentList[self.TEMPLATE_VERSION_POSITION] =\
+            self.contentList[self.TEMPLATE_VERSION_POSITION].format(self.setupData.getVersion())
+
+        self.contentList[self.TEMPLATE_DESCRIPTION_POSITON] = \
+            self.contentList[self.TEMPLATE_DESCRIPTION_POSITON].format(self.setupData.getDescription())
+
+        self.contentList[self.TEMPLATE_KEYWORDS_POSITON] = \
+            self.contentList[self.TEMPLATE_KEYWORDS_POSITON].format(self.setupData.getKeywords())
+
+        self.contentList[self.TEMPLATE_URL_POSITON] =\
+            self.contentList[self.TEMPLATE_URL_POSITON].format(self.setupData.getUrl())
+
+        self.contentList[self.TEMPLATE_AUTHOR_POSITION] = \
+            self.contentList[self.TEMPLATE_AUTHOR_POSITION].format(self.setupData.getAuthor())
+
+        self.contentList[self.TEMPLATE_AUTHOREMAIL_POSITION] = \
+            self.contentList[self.TEMPLATE_AUTHOREMAIL_POSITION].format(self.setupData.getAuthorEmail())
+
+        self.contentList[self.TEMPLATE_PACKAGE_POSITION] = \
+            self.contentList[self.TEMPLATE_PACKAGE_POSITION].format(self.setupData.getPackage())
+
+        self.contentList[self.TEMPLATE_ENTRYPOINTS_POSITION] = \
+            self.contentList[self.TEMPLATE_ENTRYPOINTS_POSITION].format(self.setupData.getEntryPoint(), self.setupData.getPackage())
+
+        return self
 
     def getContentTemplateList(self) -> list:
         return self.contentList

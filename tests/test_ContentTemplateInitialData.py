@@ -2,12 +2,17 @@ import unittest
 import sys
 sys.path.insert(1, "..")
 from setupPython.ContentTemplate import ContentTemplate
+from setupPython.SetupData import SetupData
 
 
 class test_ContentTemplateInitialData(unittest.TestCase):
 
     def setUp(self):
         self.contentTemplate = ContentTemplate()
+
+    def test_setSetupDataFluentInterface(self):
+        returnedObject = self.contentTemplate.setSetupData(SetupData())
+        self.assertTrue(isinstance(returnedObject, ContentTemplate))
 
     def test_getVersionTemplate(self):
         expected_string = "VERSION = {0}"
