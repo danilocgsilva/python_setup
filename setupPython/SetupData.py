@@ -79,6 +79,6 @@ class SetupData:
 
     def isFullFilled(self) -> bool:
         for key in self.data:
-            if self.data[key] is None:
+            if self.data[key] is None or self.data[key] == "":
                 return False
         return True

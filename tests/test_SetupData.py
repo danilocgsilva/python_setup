@@ -56,3 +56,30 @@ class test_SetupData(unittest.TestCase):
     def test_isFullFilledTrue(self):
         setupDataFullFilled = getPreparedSetupDate()
         self.assertTrue(setupDataFullFilled.isFullFilled())
+
+    def test_isFullFilledFalseWithStringsSingle(self):
+        setupData = SetupData(). \
+            setVersion("2.2.1"). \
+            setName("my-app-name"). \
+            setDescription(""). \
+            setKeywords("those are the keywords"). \
+            setUrl("http://thisistheversioncontrol.site"). \
+            setAuthor("Danilo Silva"). \
+            setAuthorEmail("contact@danilocgsilva.me"). \
+            setPackage("thepackage"). \
+            setEntryPoint("executehere")
+
+        self.assertFalse(setupData.isFullFilled())
+
+    def test_isFullFilledFalseForget(self):
+        setupData = SetupData(). \
+            setVersion("2.2.1"). \
+            setName("my-app-name"). \
+            setDescription(""). \
+            setUrl("http://thisistheversioncontrol.site"). \
+            setAuthor("Danilo Silva"). \
+            setAuthorEmail("contact@danilocgsilva.me"). \
+            setPackage("thepackage"). \
+            setEntryPoint("executehere")
+
+        self.assertFalse(setupData.isFullFilled())
