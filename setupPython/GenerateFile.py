@@ -8,14 +8,17 @@ class GenerateFile:
     def __init__(self):
         self.setupData = None
         self.fileName = "setup.py"
-        self.contentTemplate = ContentTemplate
+        self.contentTemplate = None
 
     def setSetupData(self, setupData: SetupData):
         self.setupData = setupData
         return self
 
+    def setContentTemplate(self, contentTemplate: ContentTemplate):
+        self.contentTemplate = contentTemplate
+        return self
+
     def generate(self) -> str:
         valuedContentTemplate = ""
-        valuedContentTemplate += self.set
 
         return valuedContentTemplate
