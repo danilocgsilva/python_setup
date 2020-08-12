@@ -2,7 +2,7 @@ import unittest
 import sys
 sys.path.insert(1, "..")
 from setupPython.SetupData import SetupData
-
+from tests.helpers import getPreparedSetupDate
 
 class test_SetupData(unittest.TestCase):
 
@@ -49,3 +49,10 @@ class test_SetupData(unittest.TestCase):
     def test_setVersionFluentInterface(self):
         returnendObject = self.setupData.setVersion("3.2.1")
         self.assertTrue(isinstance(returnendObject, SetupData))
+
+    def test_isFullFilledFalse(self):
+        self.assertFalse(self.setupData.isFullFilled())
+
+    def test_isFullFilledTrue(self):
+        setupDataFullFilled = getPreparedSetupDate()
+        self.assertTrue(setupDataFullFilled.isFullFilled())

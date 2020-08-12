@@ -78,11 +78,7 @@ class SetupData:
         return self
 
     def isFullFilled(self) -> bool:
-        return self.name is not None and\
-            self.description is not None and\
-            self.keywords is not None and\
-            self.url is not None and\
-            self.author is not None and\
-            self.authorEmail is not None and\
-            self.package is not None and\
-            self.entryPoint is not None
+        for key in self.data:
+            if self.data[key] is None:
+                return False
+        return True
