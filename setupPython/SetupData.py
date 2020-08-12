@@ -1,76 +1,88 @@
 class SetupData:
 
     def __init__(self):
-        self.name = None
-        self.version = "0.0.1"
-        self.description = None
-        self.keywords = None
-        self.url = None
-        self.author = None
-        self.authorEmail = None
-        self.package = None
-        self.entryPoint = None
-    
+
+        self.data = {
+            "name": None,
+            "version": "0.0.1",
+            "description": None,
+            "keywords": None,
+            "url": None,
+            "author": None,
+            "authorEmail": None,
+            "package": None,
+            "entryPoint": None
+        }
+
     def setName(self, name: str):
-        self.name = name
+        self.data["name"] = name
         return self
         
     def getVersion(self) -> str:
-        return self.version
+        return self.data["version"]
 
     def getName(self) -> str:
-        return self.name
+        return self.data["name"]
 
     def getDescription(self) -> str:
-        return self.description
+        return self.data["description"]
 
     def setDescription(self, description: str):
-        self.description = description
+        self.data["description"] = description
         return self
 
     def getKeywords(self) -> str:
-        return self.keywords
+        return self.data["keywords"]
 
     def setKeywords(self, keywords: str):
-        self.keywords = keywords
+        self.data["keywords"] = keywords
         return self
 
     def getUrl(self) -> str:
-        return self.url
+        return self.data["url"]
 
     def setUrl(self, url: str):
-        self.url = url
+        self.data["url"] = url
         return self
 
     def getAuthor(self) -> str:
-        return self.author
+        return self.data["author"]
 
     def setVersion(self, version):
-        self.version = version
+        self.data["version"] = version
         return self
 
     def setAuthor(self, author: str):
-        self.author = author
+        self.data["author"] = author
         return self
 
     def getAuthorEmail(self) -> str:
-        return self.authorEmail
+        return self.data["authorEmail"]
 
     def setAuthorEmail(self, authorEmail: str):
-        self.authorEmail = authorEmail
+        self.data["authorEmail"] = authorEmail
         return self
 
     def getPackage(self) -> str:
-        return self.package
+        return self.data["package"]
 
     def setPackage(self, package: str):
-        self.package = package
+        self.data["package"] = package
         return self
 
     def getEntryPoint(self) -> str:
-        return self.entryPoint
+        return self.data["entryPoint"]
 
     def setEntryPoint(self, entryPoint: str):
-        self.entryPoint = entryPoint
+        self.data["entryPoint"] = entryPoint
         return self
 
+    def isFullFilled(self) -> bool:
+        return self.name is not None and\
+            self.description is not None and\
+            self.keywords is not None and\
+            self.url is not None and\
+            self.author is not None and\
+            self.authorEmail is not None and\
+            self.package is not None and\
+            self.entryPoint is not None
