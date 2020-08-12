@@ -1,4 +1,3 @@
-import pkg_resources
 from setupPython.SetupData import SetupData
 from setupPython.ContentTemplate import ContentTemplate
 

@@ -1,11 +1,10 @@
-from setupPython.helpers import getContentTemplateList
 import re
 
 
 class ContentTemplate:
 
     def __init__(self):
-        self.contentList = getContentTemplateList()
+        self.contentList = self.getInitialContentTemplateList()
         self.TEMPLATE_VERSION_POSITION = 2
         self.TEMPLATE_NAME_POSITON = 9
         self.TEMPLATE_DESCRIPTION_POSITON = 11
@@ -109,3 +108,34 @@ class ContentTemplate:
         self.contentList[self.TEMPLATE_ENTRYPOINTS_POSITION] = entryPointTemplate.format(entryPoint, self.getPackageValue())
 
         return self
+
+    def getInitialContentTemplateList(self) -> list:
+
+        contentList = []
+
+        contentList.append("from setuptools import setup")
+        contentList.append("")
+        contentList.append("VERSION = {0}")
+        contentList.append("")
+        contentList.append("def readme():")
+        contentList.append("    with open(\"README.md\") as f:")
+        contentList.append("        return f.read()")
+        contentList.append("")
+        contentList.append("setup(")
+        contentList.append("    name=\"{0}\",")
+        contentList.append("    version=VERSION,")
+        contentList.append("    description=\"{0}\",")
+        contentList.append("    long_description_content_type=\"text/markdown\",")
+        contentList.append("    long_description=readme(),")
+        contentList.append("    keywords=\"{0}\",")
+        contentList.append("    url=\"{0}\",")
+        contentList.append("    author=\"{0}\",")
+        contentList.append("    author_email=\"{0}\",")
+        contentList.append("    packages=[\"{0}\"],")
+        contentList.append("    entry_points={\"console_scripts\": )")
+        contentList.append("[\"{0}={1}.__main__:main\"],")
+        contentList.append("},")
+        contentList.append("    include_package_data=True")
+        contentList.append(")")
+
+        return contentList
