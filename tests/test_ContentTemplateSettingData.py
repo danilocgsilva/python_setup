@@ -1,6 +1,7 @@
 import unittest
 import sys
 sys.path.insert(1, "..")
+from tests.helpers import getPreparedSetupDate
 from setupPython.ContentTemplate import ContentTemplate
 from setupPython.SetupData import SetupData
 
@@ -9,16 +10,7 @@ class test_ContentTemplateInitialData(unittest.TestCase):
 
     def setUp(self):
         self.contentTemplate = ContentTemplate()
-        self.setupData = SetupData().\
-            setVersion("2.2.1").\
-            setName("my-app-name").\
-            setDescription("This is the description of my application.").\
-            setKeywords("those are the keywords").\
-            setUrl("http://thisistheversioncontrol.site").\
-            setAuthor("Danilo Silva").\
-            setAuthorEmail("contact@danilocgsilva.me").\
-            setPackage("thepackage").\
-            setEntryPoint("executehere")
+        self.setupData = getPreparedSetupDate()
         self.contentTemplate.setSetupData(self.setupData)
 
     def test_setVersion(self):

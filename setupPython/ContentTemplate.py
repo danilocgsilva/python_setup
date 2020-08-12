@@ -115,7 +115,7 @@ class ContentTemplate:
         contentList.append("    author=\"{0}\",")
         contentList.append("    author_email=\"{0}\",")
         contentList.append("    packages=[\"{0}\"],")
-        contentList.append("    entry_points={\"console_scripts\": )")
+        contentList.append("    entry_points={\"console_scripts\": ")
         contentList.append("[\"{0}={1}.__main__:main\"],")
         contentList.append("},")
         contentList.append("    include_package_data=True")
