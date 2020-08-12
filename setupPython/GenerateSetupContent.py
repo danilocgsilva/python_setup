@@ -2,7 +2,7 @@ from setupPython.SetupData import SetupData
 from setupPython.ContentTemplate import ContentTemplate
 
 
-class GenerateFile:
+class GenerateSetupContent:
 
     def __init__(self):
         self.setupData = None

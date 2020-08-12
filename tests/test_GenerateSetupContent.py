@@ -1,31 +1,28 @@
 import unittest
-import tempfile
-import os
 import sys
 sys.path.insert(1, "..")
-from setupPython.GenerateFile import GenerateFile
+from setupPython.GenerateSetupContent import GenerateSetupContent
 from setupPython.ContentTemplate import ContentTemplate
-from setupPython.SetupData import SetupData
 from tests.helpers import getPreparedSetupDate
 
-class test_GenerateFile(unittest.TestCase):
+class test_GenerateSetupContent(unittest.TestCase):
 
     def setUp(self):
-        self.generateFile = GenerateFile()
+        self.generateSetupContent = GenerateSetupContent()
 
     def test_setContentTemplateFluentInterface(self):
         contentTemplate = ContentTemplate()
-        returnedObject = self.generateFile.setContentTemplate(contentTemplate)
-        self.assertTrue(isinstance(returnedObject, GenerateFile))
+        returnedObject = self.generateSetupContent.setContentTemplate(contentTemplate)
+        self.assertTrue(isinstance(returnedObject, GenerateSetupContent))
 
     def test_getSetupContent(self):
         self.maxDiff = 10000
 
         contentTemplate = ContentTemplate()
         contentTemplate.setSetupData(getPreparedSetupDate())
-        self.generateFile.setContentTemplate(contentTemplate)
+        self.generateSetupContent.setContentTemplate(contentTemplate)
 
-        returnedContent = self.generateFile.getSetupContent()
+        returnedContent = self.generateSetupContent.getSetupContent()
 
         expected_content = '''from setuptools import setup
 

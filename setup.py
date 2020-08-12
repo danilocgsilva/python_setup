@@ -18,6 +18,6 @@ setup(
     author="Danilo Silva",
     author_email="contato@danilocgsilva.me",
     packages=["setupPython"],
-    entry_points={"console_scripts": ["setupPython=setupPython.__main__:main"]},
+    entry_points={"console_scripts": ["spython=setupPython.__main__:main"]},
     include_package_data=True
 )
