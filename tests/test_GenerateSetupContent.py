@@ -15,14 +15,14 @@ class test_GenerateSetupContent(unittest.TestCase):
         returnedObject = self.generateSetupContent.setContentTemplate(contentTemplate)
         self.assertTrue(isinstance(returnedObject, GenerateSetupContent))
 
-    def test_getSetupContent(self):
+    def test_getContent(self):
         self.maxDiff = 10000
 
         contentTemplate = ContentTemplate()
         contentTemplate.setSetupData(getPreparedSetupDate())
         self.generateSetupContent.setContentTemplate(contentTemplate)
 
-        returnedContent = self.generateSetupContent.getSetupContent()
+        returnedContent = self.generateSetupContent.getContent()
 
         expected_content = '''from setuptools import setup
 

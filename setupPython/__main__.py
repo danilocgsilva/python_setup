@@ -34,5 +34,6 @@ def main():
     contentTemplate.setSetupData(setupData)
     generate_setup_file = GenerateSetupContent()
     generate_setup_file.setContentTemplate(contentTemplate)
-    setup_content = generate_setup_file.getSetupContent()
+    setup_content = generate_setup_file.getContent()
     print(setup_content)
+

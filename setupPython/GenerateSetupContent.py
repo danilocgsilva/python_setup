@@ -13,7 +13,7 @@ class GenerateSetupContent:
         self.contentTemplate = contentTemplate
         return self
 
-    def getSetupContent(self):
+    def getContent(self):
 
         setupContent = ""
 
