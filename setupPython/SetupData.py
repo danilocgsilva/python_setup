@@ -45,6 +45,10 @@ class SetupData:
     def getAuthor(self) -> str:
         return self.author
 
+    def setVersion(self, version):
+        self.version = version
+        return self
+
     def setAuthor(self, author: str):
         self.author = author
         return self

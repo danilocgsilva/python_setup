@@ -9,15 +9,21 @@ class GenerateFile:
         self.fileName = "setup.py"
         self.contentTemplate = None
 
-    def setSetupData(self, setupData: SetupData):
-        self.setupData = setupData
-        return self
-
     def setContentTemplate(self, contentTemplate: ContentTemplate):
         self.contentTemplate = contentTemplate
         return self
 
-    def generate(self) -> str:
-        valuedContentTemplate = ""
+    def writeFile(self, filePath: str):
+        file = open(filePath, "a")
+        contentList = self.contentTemplate.getContentTemplateList()
 
-        return valuedContentTemplate
+        for i in range(0, 19):
+            file.write(contentList[i])
+
+        for i in range(20, 22):
+            file.write(contentList[i])
+
+        for i in range(23, len(contentList)):
+            file.write(contentList[i])
+
+        file.close()

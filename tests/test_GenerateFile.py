@@ -10,13 +10,12 @@ class test_GenerateFile(unittest.TestCase):
     def setUp(self):
         self.generateFile = GenerateFile()
 
-    def test_setSetupDataFluentInterface(self):
-        setupData = SetupData()
-        returnedObject = self.generateFile.setSetupData(setupData)
-        self.assertTrue(isinstance(returnedObject, GenerateFile))
-
     def test_setContentTemplateFluentInterface(self):
         contentTemplate = ContentTemplate()
         returnedObject = self.generateFile.setContentTemplate(contentTemplate)
         self.assertTrue(isinstance(returnedObject, GenerateFile))
+
+    def test_writeFile(self):
+        contentTemplate = ContentTemplate()
+
 

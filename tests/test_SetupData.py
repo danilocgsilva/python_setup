@@ -9,7 +9,7 @@ class test_SetupData(unittest.TestCase):
     def setUp(self):
         self.setupData = SetupData()
 
-    def test_getVersion(self) -> str:
+    def test_getVersion(self):
         defaultVersion = "0.0.1"
         returnedVersion = self.setupData.getVersion()
         self.assertEqual(defaultVersion, returnedVersion)
@@ -45,3 +45,7 @@ class test_SetupData(unittest.TestCase):
     def test_setEntryPointFluentInterface(self):
         returnedObject = self.setupData.setEntryPoint("executehere")
         self.assertTrue(isinstance(returnedObject, SetupData))
+
+    def test_setVersionFluentInterface(self):
+        returnendObject = self.setupData.setVersion("3.2.1")
+        self.assertTrue(isinstance(returnendObject, SetupData))
