@@ -24,12 +24,19 @@ class test_Scaffold(unittest.TestCase):
         self.assertTrue(isinstance(returnedObject, Scaffold))
 
     def test_generate(self):
-
         base_location = os.path.join(tempfile.gettempdir(), 'scaffold_test')
-
         self.scaffold.generate(base_location)
-
         os.chdir(base_location)
-
         self.assertTrue(os.path.exists("README.md"))
 
+    def test_setSetupContent(self):
+        self.assertTrue(False)
+
+    def test_setReadmeContent(self):
+        self.assertTrue(False)
+
+    def test_setPackage(self):
+        self.assertTrue(False)
+
+    def test_setMainContent(self):
+        self.assertTrue(False)

@@ -1,12 +1,27 @@
 from setupPython.SetupData import SetupData
 from setupPython.ContentTemplate import ContentTemplate
 from setupPython.GenerateSetupContent import GenerateSetupContent
+from setupPython.GenerateReadmeContent import GenerateReadmeContent
+from setupPython.GenerateStubScript import GenerateStubScript
+import os
 
 
 def main():
 
     setupData = SetupData()
+    setupDataFilled = fillsSetupData(setupData)
 
+    generate_readme_content = GenerateReadmeContent()
+    generate_setup_content = GenerateSetupContent()
+    generate_stub_content = GenerateStubScript()
+
+    content_template = ContentTemplate().setSetupData(setupDataFilled)
+    generate_setup_content.setContentTemplate(content_template)
+
+
+
+
+def fillsSetupData(self, setupData: SetupData):
     packageName = input("Type the name for your package: ")
     setupData.setName(packageName)
 
@@ -30,10 +45,5 @@ def main():
 
     entry_points = input("Finally, type how you want to call your script: ")
     setupData.setEntryPoint(entry_points)
-    contentTemplate = ContentTemplate()
-    contentTemplate.setSetupData(setupData)
-    generate_setup_file = GenerateSetupContent()
-    generate_setup_file.setContentTemplate(contentTemplate)
-    setup_content = generate_setup_file.getContent()
-    print(setup_content)
 
+    return setupData

@@ -7,10 +7,27 @@ class Scaffold:
 
     def __init__(self):
         self.setupData = None
+        self.package = None
+        self.fileDict = {}
+
+    def setSetupContent(self, content: str):
+        self.fileDict["setup.py"] = content
+        return self
+
+    def setReadmeContent(self, content: str):
+        self.fileDict["README.md"] = content
+        return self
+
+    def setPackage(self, package: str):
+        self.package = package
+        return self
+
+    def setMainContent(self, content: str):
+        self.fileDict[os.path.join(self.package, "__main__.py")] = content
 
     def setSetupData(self, setupData: SetupData):
         if not setupData.isFullFilled():
-            raise Exception("The setup data have missing porperties and we cannot prceed.")
+            raise Exception("The setup data have missing properties and we cannot proceed.")
         self.setupData = setupData
         return self
 
