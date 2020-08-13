@@ -22,7 +22,7 @@ class test_ContentTemplateInitialData(unittest.TestCase):
             self.contentTemplate.setSetupData(empty_setup_data)
 
     def test_getVersionTemplate(self):
-        expected_string = "VERSION = {0}"
+        expected_string = "VERSION = \"{0}\""
         returned_string = self.contentTemplate.getVersionTemplate()
         self.assertEqual(expected_string, returned_string)
 

@@ -14,7 +14,7 @@ class test_ContentTemplateInitialData(unittest.TestCase):
         self.contentTemplate.setSetupData(self.setupData)
 
     def test_setVersion(self):
-        expected_template = "VERSION = 2.2.1"
+        expected_template = "VERSION = \"2.2.1\""
         resulting_template = self.contentTemplate.getVersionTemplate()
         self.assertEqual(expected_template, resulting_template)
 

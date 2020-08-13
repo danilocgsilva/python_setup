@@ -3,11 +3,11 @@ from setupPython.ContentTemplate import ContentTemplate
 from setupPython.GenerateSetupContent import GenerateSetupContent
 from setupPython.GenerateReadmeContent import GenerateReadmeContent
 from setupPython.GenerateStubScript import GenerateStubScript
+from setupPython.Scaffold import Scaffold
 import os
 
 
 def main():
-
     setupData = SetupData()
     setupDataFilled = fillsSetupData(setupData)
 
@@ -18,10 +18,18 @@ def main():
     content_template = ContentTemplate().setSetupData(setupDataFilled)
     generate_setup_content.setContentTemplate(content_template)
 
+    generate_readme_content.setTitle(setupData.getName())
+
+    scaffold = Scaffold()
+    scaffold.setBasePath(".")
+    scaffold.setPackage(setupData.getPackage())
+    scaffold.setReadmeContent(generate_readme_content.getContent())
+    scaffold.setSetupContent(generate_setup_content.getContent())
+    scaffold.setMainContent(generate_stub_content.getContent())
+    scaffold.generate()
 
 
-
-def fillsSetupData(self, setupData: SetupData):
+def fillsSetupData(setupData: SetupData):
     packageName = input("Type the name for your package: ")
     setupData.setName(packageName)
 

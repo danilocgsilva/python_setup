@@ -26,7 +26,7 @@ class test_GenerateSetupContent(unittest.TestCase):
 
         expected_content = '''from setuptools import setup
 
-VERSION = 2.2.1
+VERSION = "2.2.1"
 
 def readme():
     with open(\"README.md\") as f:

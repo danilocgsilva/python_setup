@@ -102,7 +102,7 @@ class ContentTemplate:
 
         contentList.append("from setuptools import setup")
         contentList.append("")
-        contentList.append("VERSION = {0}")
+        contentList.append("VERSION = \"{0}\"")
         contentList.append("")
         contentList.append("def readme():")
         contentList.append("    with open(\"README.md\") as f:")
