@@ -24,6 +24,7 @@ class Scaffold:
 
     def setMainContent(self, content: str):
         self.fileDict[os.path.join(self.package, "__main__.py")] = content
+        return self
 
     def setSetupData(self, setupData: SetupData):
         if not setupData.isFullFilled():

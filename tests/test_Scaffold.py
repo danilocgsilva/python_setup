@@ -29,14 +29,32 @@ class test_Scaffold(unittest.TestCase):
         os.chdir(base_location)
         self.assertTrue(os.path.exists("README.md"))
 
-    def test_setSetupContent(self):
-        self.assertTrue(False)
+    def test_setSetupContentFluentInterface(self):
+        stub_content = "This is stub content"
+        returned_object = self.scaffold.setSetupContent(stub_content)
+        self.assertTrue(isinstance(returned_object, Scaffold))
 
-    def test_setReadmeContent(self):
-        self.assertTrue(False)
+    def test_setReadmeContentFluentInterface(self):
+        stub_content = "This is stub content for readme"
+        returned_object = self.scaffold.setReadmeContent(stub_content)
+        self.assertTrue(isinstance(returned_object, Scaffold))
 
-    def test_setPackage(self):
-        self.assertTrue(False)
+    def test_setPackageFluentInterface(self):
+        stub_content = "scriptpackage"
+        returned_object = self.scaffold.setPackage(stub_content)
+        self.assertTrue(isinstance(returned_object, Scaffold))
 
-    def test_setMainContent(self):
-        self.assertTrue(False)
+    def test_setMainContentForgettingPackage(self):
+        stub_content = "def() the main content"
+        with self.assertRaises(Exception):
+            self.scaffold.setMainContent(stub_content)
+
+    def test_setMainContentFluentInterface(self):
+        stub_content = "def() the main content"
+        stup_package = "scriptpackage"
+
+        returned_object = self.scaffold\
+            .setPackage(stup_package)\
+            .setMainContent(stub_content)
+        
+        self.assertTrue(isinstance(returned_object, Scaffold))
