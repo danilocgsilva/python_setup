@@ -8,7 +8,12 @@ class Scaffold:
     def __init__(self):
         self.setupData = None
         self.package = None
+        self.basePath = None
         self.fileDict = {}
+
+    def setBasePath(self, base_path: str):
+        self.basePath = base_path
+        return self
 
     def setSetupContent(self, content: str):
         self.fileDict["setup.py"] = content
@@ -37,13 +42,18 @@ class Scaffold:
         if not os.path.exists(base_location):
             os.makedirs(base_location)
 
-        generateReadmeContent = GenerateReadmeContent()
-
-        readme_file_path = os.path.join(base_location, "README.md")
-
-        self.createFile(readme_file_path, "This is the file content")
+        for file_key in self.fileDict:
+            self.createFile(file_key, self.fileDict[file_key])
 
     def createFile(self, file_name: str, file_content: str):
-        readme_file_resource = open(file_name, "a")
-        readme_file_resource.write(file_content + "\n")
-        readme_file_resource.close()
+
+        if self.basePath == None:
+            raise Exception("You need to set the base path first.")
+
+        if not os.path.exists(self.basePath):
+            os.makedirs(self.basePath)
+
+        file_resource = open(os.path.join(self.basePath, file_name), "a")
+        print(os.path.join(self.basePath, file_name))
+        file_resource.write(file_content + "\n")
+        file_resource.close()
