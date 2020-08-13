@@ -42,7 +42,7 @@ class test_ScaffoldFiles(unittest.TestCase):
         os.chdir(self.tests_base_location_files)
         self.assertTrue(os.path.exists(os.path.join("apppackage", "__main__.py")))
 
-    def test_createFile(self):
+    def test_createFileFileContent(self):
         some_file_title = "hello.txt"
         some_file_content = "Hi! I exists!"
         self.scaffold.setBasePath(self.tests_base_location_files)
@@ -54,6 +54,21 @@ class test_ScaffoldFiles(unittest.TestCase):
         just_create_file_resource.close()
 
         self.assertEqual(some_file_content + "\n", just_create_file_content)
+
+    def test_createFileReturnString(self):
+        some_file_title = "hello.js"
+        some_file_content = "Hi! I exists!"
+        self.scaffold.setBasePath(self.tests_base_location_files)
+        file_to_create = self.scaffold.createFile(some_file_title, some_file_content)
+        self.assertEqual(some_file_title, file_to_create)
+
+    def test_createFileReturnStringOneLevel(self):
+        some_file_title = "package" + os.sep + "hello.js"
+        some_file_content = "Hi! I exists!"
+        self.scaffold.setBasePath(self.tests_base_location_files)
+        file_to_create = self.scaffold.createFile(some_file_title, some_file_content)
+        self.assertEqual(some_file_title, file_to_create)
+
 
     def getFileContent(self, file_path: str):
         readme_resource = open(file_path)

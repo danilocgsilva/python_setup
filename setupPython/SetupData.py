@@ -1,3 +1,6 @@
+import re
+
+
 class SetupData:
 
     def __init__(self):
@@ -16,6 +19,10 @@ class SetupData:
 
     def setName(self, name: str):
         self.data["name"] = name
+
+        if self.data["package"] is None:
+            self.data["package"] = self.convertToNamespace(name)
+
         return self
         
     def getVersion(self) -> str:
@@ -64,7 +71,14 @@ class SetupData:
         return self
 
     def getPackage(self) -> str:
-        return self.data["package"]
+        package_name = self.data["package"]
+
+        if package_name is None:
+            if self.data["name"] is None:
+                raise Exception("To get the package name, first you need set the package name or at least set a general name.")
+            package_name = self.convertToNamespace(self.data["name"])
+
+        return package_name
 
     def setPackage(self, package: str):
         self.data["package"] = package
@@ -82,3 +96,7 @@ class SetupData:
             if self.data[key] is None or self.data[key] == "":
                 return False
         return True
+
+    def convertToNamespace(self, original):
+        translated = re.sub(r" ", "_", original)
+        return translated.lower()

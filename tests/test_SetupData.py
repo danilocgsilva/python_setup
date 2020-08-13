@@ -83,3 +83,31 @@ class test_SetupData(unittest.TestCase):
             setEntryPoint("executehere")
 
         self.assertFalse(setupData.isFullFilled())
+
+    def test_getPackageDefaultPackageWithoutName(self):
+        with self.assertRaises(Exception):
+            self.setupData.getPackage()
+
+    def test_getPackageDefaultWithName(self):
+        self.setupData.setName("My Package Name")
+        expected_package_name = "my_package_name"
+        package_name_returned = self.setupData.getPackage()
+        self.assertEqual(expected_package_name, package_name_returned)
+
+    def test_convertToNamespace(self):
+        original_term = "This is my App"
+        expected_result = "this_is_my_app"
+        returned_result = self.setupData.convertToNamespace(original_term)
+        self.assertEqual(expected_result, returned_result)
+
+    def test_isFullFilledWithoutPackage(self):
+        setupData = SetupData().\
+            setVersion("2.2.1").\
+            setName("my-app-name").\
+            setDescription("This is the description of my application.").\
+            setKeywords("those are the keywords").\
+            setUrl("http://thisistheversioncontrol.site").\
+            setAuthor("Danilo Silva").\
+            setAuthorEmail("contact@danilocgsilva.me").\
+            setEntryPoint("executehere")
+        self.assertTrue(setupData.isFullFilled())

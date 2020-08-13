@@ -8,12 +8,19 @@ import os
 
 
 def main():
+
+    if len(os.listdir()) > 0:
+        print("There are files in this folder.")
+        print("Please, create an empty dir, go there and then you can create an installable Python script.")
+        exit()
+
     setupData = SetupData()
     setupDataFilled = fillsSetupData(setupData)
 
     generate_readme_content = GenerateReadmeContent()
     generate_setup_content = GenerateSetupContent()
     generate_stub_content = GenerateStubScript()
+    generate_stub_content.setTitle(setupData.getName())
 
     content_template = ContentTemplate().setSetupData(setupDataFilled)
     generate_setup_content.setContentTemplate(content_template)
@@ -26,7 +33,9 @@ def main():
     scaffold.setReadmeContent(generate_readme_content.getContent())
     scaffold.setSetupContent(generate_setup_content.getContent())
     scaffold.setMainContent(generate_stub_content.getContent())
-    scaffold.generate()
+    generated_files = scaffold.generate()
+
+    endMessages(generated_files, setupData)
 
 
 def fillsSetupData(setupData: SetupData):
@@ -48,10 +57,15 @@ def fillsSetupData(setupData: SetupData):
     author_email = input("Set the author e-mail: ")
     setupData.setAuthorEmail(author_email)
 
-    package_identifier = input("Write the name acessible by the system (think as system namespace): ")
-    setupData.setPackage(package_identifier)
-
     entry_points = input("Finally, type how you want to call your script: ")
     setupData.setEntryPoint(entry_points)
 
     return setupData
+
+def endMessages(generated_files: list, setup_data: SetupData):
+    print("Good! You just created the following files:")
+    for file in generated_files:
+        print("-> " + file)
+    print("Next steps:")
+    print("* Ajusts the README.md so clarify to others how to use your package.")
+    print("* Starts your job altering the " + setup_data.getPackage() + os.sep + "__main__.py in the main() function. Everything starts there.")
