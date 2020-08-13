@@ -14,16 +14,33 @@ class test_ScaffoldFiles(unittest.TestCase):
         self.tests_base_location_files = os.path.join(tempfile.gettempdir(), 'scaffold_test')
         if os.path.exists(self.tests_base_location_files):
             shutil.rmtree(self.tests_base_location_files)
+        self.scaffold = Scaffold().setBasePath(self.tests_base_location_files)
 
     def test_generateReadmeExists(self):
-        self.scaffold.generate(self.tests_base_location_files)
+        self.scaffold.setReadmeContent("This is the readme content!")
+        self.scaffold.generate()
+
         os.chdir(self.tests_base_location_files)
         self.assertTrue(os.path.exists("README.md"))
 
     def test_generateSetupExists(self):
-        self.scaffold.generate(self.tests_base_location_files)
+        self.scaffold.setSetupContent("Another content")
+        self.scaffold.generate()
+
         os.chdir(self.tests_base_location_files)
         self.assertTrue(os.path.exists("setup.py"))
+
+    def test_generateMainWithoutPackage(self):
+        with self.assertRaises(Exception):
+            self.scaffold.setMainContent("def main content")
+
+    def test_generateMain(self):
+        self.scaffold.setPackage("apppackage")
+        self.scaffold.setMainContent("def main content")
+        self.scaffold.generate()
+
+        os.chdir(self.tests_base_location_files)
+        self.assertTrue(os.path.exists(os.path.join("apppackage", "__main__.py")))
 
     def test_createFile(self):
         some_file_title = "hello.txt"

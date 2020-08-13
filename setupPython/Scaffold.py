@@ -37,10 +37,10 @@ class Scaffold:
         self.setupData = setupData
         return self
 
-    def generate(self, base_location: str):
+    def generate(self):
 
-        if not os.path.exists(base_location):
-            os.makedirs(base_location)
+        if len(self.fileDict) == 0:
+            raise Exception("No file from scaffold content has been setted.")
 
         for file_key in self.fileDict:
             self.createFile(file_key, self.fileDict[file_key])
@@ -53,7 +53,10 @@ class Scaffold:
         if not os.path.exists(self.basePath):
             os.makedirs(self.basePath)
 
+        parts_file_name = file_name.split(os.sep)
+        if len(parts_file_name) > 1:
+            os.makedirs(self.basePath + os.sep + parts_file_name[0])
+
         file_resource = open(os.path.join(self.basePath, file_name), "a")
-        print(os.path.join(self.basePath, file_name))
         file_resource.write(file_content + "\n")
         file_resource.close()
