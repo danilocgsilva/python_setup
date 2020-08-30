@@ -14,23 +14,21 @@ def main():
         print("Please, create an empty dir, go there and then you can create an installable Python script.")
         exit()
 
+    scaffold = Scaffold().setBasePath(".")
+
     setupDataFilled = fillsSetupData(SetupData())
-
-    generate_readme_content = GenerateReadmeContent()
-    generate_setup_content = GenerateSetupContent()
-    generate_stub_content = GenerateStubScript()
-    generate_stub_content.setTitle(setupDataFilled.getName())
-
-    content_template = ContentTemplate().setSetupData(setupDataFilled)
-    generate_setup_content.setContentTemplate(content_template)
-
-    generate_readme_content.setTitle(setupDataFilled.getName())
-
-    scaffold = Scaffold()
-    scaffold.setBasePath(".")
     scaffold.setPackage(setupDataFilled.getPackage())
+
+    generate_readme_content = GenerateReadmeContent().setTitle(setupDataFilled.getName())
     scaffold.setReadmeContent(generate_readme_content.getContent())
+
+    content_template = ContentTemplate() \
+        .setSetupData(setupDataFilled)
+    generate_setup_content = GenerateSetupContent() \
+        .setContentTemplate(content_template)
     scaffold.setSetupContent(generate_setup_content.getContent())
+    generate_stub_content = GenerateStubScript()\
+        .setTitle(setupDataFilled.getName())
     scaffold.setMainContent(generate_stub_content.getContent())
     generated_files = scaffold.generate()
 
