@@ -61,5 +61,3 @@ class test_ContentTemplateInitialData(unittest.TestCase):
         returned_string = self.contentTemplate.getEntryPoints()
 
         self.assertEqual(expected_string, returned_string)
-
-

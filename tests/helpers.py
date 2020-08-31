@@ -1,6 +1,10 @@
 import sys
 sys.path.insert(1, "..")
+import datetime
+import tempfile
 from setupPython.SetupData import SetupData
+from setupPython.Helpers import Helpers
+
 
 def getPreparedSetupDate() -> SetupData:
 
@@ -31,3 +35,9 @@ def getPreparedSetupDateWithoutEntryPoint() -> SetupData:
         setPackage("thepackage")
 
     return setupData
+
+def savePhysicallyInFs(returned, expected, datetime):
+    temporary_folder = tempfile.gettempdir()
+    testing_hash = Helpers().getStringTime(datetime)
+    return testing_hash
+
