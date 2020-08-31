@@ -19,11 +19,7 @@ class GenerateSetupContent:
 
         contentList = self.contentTemplate.getContentTemplateList()
 
-        for i in range(0, 19):
-            setupContent += contentList[i] + "\n"
-        for i in range(19, 21):
-            setupContent += contentList[i]
-        for i in range(21, len(contentList)):
+        for i in range(0, len(contentList)):
             setupContent += contentList[i] + "\n"
 
         return setupContent

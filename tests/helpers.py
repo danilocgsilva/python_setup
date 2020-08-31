@@ -16,3 +16,18 @@ def getPreparedSetupDate() -> SetupData:
         setEntryPoint("executehere")
 
     return setupData
+
+
+def getPreparedSetupDateWithoutEntryPoint() -> SetupData:
+
+    setupData = SetupData().\
+        setVersion("2.2.1").\
+        setName("my-app-name").\
+        setDescription("This is the description of my application.").\
+        setKeywords("those are the keywords").\
+        setUrl("http://thisistheversioncontrol.site").\
+        setAuthor("Danilo Silva").\
+        setAuthorEmail("contact@danilocgsilva.me").\
+        setPackage("thepackage")
+
+    return setupData

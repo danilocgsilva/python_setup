@@ -3,7 +3,9 @@ import sys
 sys.path.insert(1, "..")
 from setupPython.GenerateSetupContent import GenerateSetupContent
 from setupPython.ContentTemplate import ContentTemplate
-from tests.helpers import getPreparedSetupDate
+from tests.helpers import getPreparedSetupDate, getPreparedSetupDateWithoutEntryPoint
+from tests.Mocking import Mocking
+
 
 class test_GenerateSetupContent(unittest.TestCase):
 
@@ -18,35 +20,22 @@ class test_GenerateSetupContent(unittest.TestCase):
     def test_getContent(self):
         self.maxDiff = 10000
 
-        contentTemplate = ContentTemplate()
-        contentTemplate.setSetupData(getPreparedSetupDate())
+        contentTemplate = ContentTemplate().setSetupData(getPreparedSetupDate())
+
         self.generateSetupContent.setContentTemplate(contentTemplate)
 
         returnedContent = self.generateSetupContent.getContent()
 
-        expected_content = '''from setuptools import setup
-
-VERSION = "2.2.1"
-
-def readme():
-    with open(\"README.md\") as f:
-        return f.read()
-
-setup(
-    name="my-app-name",
-    version=VERSION,
-    description="This is the description of my application.",
-    long_description_content_type="text/markdown",
-    long_description=readme(),
-    keywords="those are the keywords",
-    url="http://thisistheversioncontrol.site",
-    author="Danilo Silva",
-    author_email="contact@danilocgsilva.me",
-    packages=["thepackage"],
-    entry_points={"console_scripts": ["executehere=thepackage.__main__:main"],},
-    include_package_data=True
-)
-'''
-
+        expected_content = Mocking().getFullSample()
         self.assertEqual(expected_content, returnedContent)
 
+    def test_getContentWithoutEntryPoint(self):
+        self.maxDiff = 10000
+
+        contentTemplate = ContentTemplate().setSetupData(getPreparedSetupDateWithoutEntryPoint())
+        self.generateSetupContent.setContentTemplate(contentTemplate)
+
+        returnedContent = self.generateSetupContent.getContent()
+
+        expected_content = Mocking().getSampleWithoutEntryPoint()
+        self.assertEqual(expected_content, returnedContent)
