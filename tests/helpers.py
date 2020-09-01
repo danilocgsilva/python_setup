@@ -1,4 +1,5 @@
 import sys
+import os
 sys.path.insert(1, "..")
 import datetime
 import tempfile
@@ -36,8 +37,14 @@ def getPreparedSetupDateWithoutEntryPoint() -> SetupData:
 
     return setupData
 
-def savePhysicallyInFs(returned, expected, datetime):
-    temporary_folder = tempfile.gettempdir()
+def savePhysicallyInFs(returned, expected, datetime, temporary_folder = None):
+
+    if not temporary_folder:
+        temporary_folder = tempfile.gettempdir()
     testing_hash = Helpers().getStringTime(datetime)
+    os.chdir(temporary_folder)
+    open(testing_hash + "-returned", 'a').close()
+    open(testing_hash + "-expected", 'a').close()
+
     return testing_hash
 

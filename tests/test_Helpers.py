@@ -27,12 +27,15 @@ class test_Helpers(unittest.TestCase):
 
     def test_savePhysicallyInFsFileCreation(self):
         temporary_test_directory = os.path.join(tempfile.gettempdir(), 'python_setup_temp_dir')
-        os.makedirs(temporary_test_directory)
+        if not os.path.exists(temporary_test_directory):
+            os.makedirs(temporary_test_directory)
         os.chdir(temporary_test_directory)
+
         for file in os.listdir():
             os.remove(file)
+    
         datetime_custom_date = datetime.datetime.strptime("06.08.2019 09:08:01,546434", "%d.%m.%Y %H:%M:%S,%f")
-        savePhysicallyInFs("a", "a", datetime_custom_date)
+        savePhysicallyInFs("a", "a", datetime_custom_date, temporary_test_directory)
         expected_file_list = ["20190806_09h08m01s-546434-expected", "20190806_09h08m01s-546434-returned"]
         self.assertListEqual(expected_file_list, os.listdir())
 

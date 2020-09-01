@@ -12,8 +12,8 @@ class test_ScaffoldFiles(unittest.TestCase):
     def setUp(self) -> None:
         self.scaffold = Scaffold()
         self.tests_base_location_files = os.path.join(tempfile.gettempdir(), 'scaffold_test')
-        if os.path.exists(self.tests_base_location_files):
-            shutil.rmtree(self.tests_base_location_files)
+        # if os.path.exists(self.tests_base_location_files):
+        #     shutil.rmtree(self.tests_base_location_files)
         self.scaffold = Scaffold().setBasePath(self.tests_base_location_files)
 
     def test_generateReadmeExists(self):
@@ -43,6 +43,8 @@ class test_ScaffoldFiles(unittest.TestCase):
         self.assertTrue(os.path.exists(os.path.join("apppackage", "__main__.py")))
 
     def test_createFileFileContent(self):
+        self.clean_tmp_folder()
+        
         some_file_title = "hello.txt"
         some_file_content = "Hi! I exists!"
         self.scaffold.setBasePath(self.tests_base_location_files)
@@ -75,3 +77,8 @@ class test_ScaffoldFiles(unittest.TestCase):
         file_content = readme_resource.read()
         readme_resource.close()
         return file_content
+
+
+    def clean_tmp_folder(self):
+        if os.path.exists(self.tests_base_location_files):
+            shutil.rmtree(self.tests_base_location_files)
