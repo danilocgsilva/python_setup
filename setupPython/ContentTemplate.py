@@ -45,45 +45,19 @@ class ContentTemplate:
         forged_list.append(self.contentList[self.TEMPLATE_AUTHOR_POSITION].format(self.setupData.getAuthor()))
         forged_list.append(self.contentList[self.TEMPLATE_AUTHOREMAIL_POSITION].format(self.setupData.getAuthorEmail()))
         forged_list.append(self.contentList[self.TEMPLATE_PACKAGE_POSITION].format(self.setupData.getPackage()))
-        forged_list.append(
-            self.contentList[19] + \
-            self.contentList[self.TEMPLATE_ENTRYPOINTS_POSITION].format(
-                self.setupData.getEntryPoint(),
-                self.setupData.getPackage()
-            ) + \
-            self.contentList[21]
-        )
-        for oc in range(21, len(self.contentList)):
+        if self.setupData.getEntryPoint():
+            forged_list.append(
+                self.contentList[19] + \
+                self.contentList[self.TEMPLATE_ENTRYPOINTS_POSITION].format(
+                    self.setupData.getEntryPoint(),
+                    self.setupData.getPackage()
+                ) + \
+                self.contentList[21]
+            )
+        for oc in range(22, len(self.contentList)):
             forged_list.append(self.contentList[oc])
 
         self.contentList = forged_list
-
-        # self.contentList[self.TEMPLATE_NAME_POSITON] =\
-        #     self.contentList[self.TEMPLATE_NAME_POSITON].format(self.setupData.getName())
-
-        # self.contentList[self.TEMPLATE_VERSION_POSITION] =\
-        #     self.contentList[self.TEMPLATE_VERSION_POSITION].format(self.setupData.getVersion())
-        #
-        # self.contentList[self.TEMPLATE_DESCRIPTION_POSITON] = \
-        #     self.contentList[self.TEMPLATE_DESCRIPTION_POSITON].format(self.setupData.getDescription())
-        #
-        # self.contentList[self.TEMPLATE_KEYWORDS_POSITON] = \
-        #     self.contentList[self.TEMPLATE_KEYWORDS_POSITON].format(self.setupData.getKeywords())
-        #
-        # self.contentList[self.TEMPLATE_URL_POSITON] =\
-        #     self.contentList[self.TEMPLATE_URL_POSITON].format(self.setupData.getUrl())
-        #
-        # self.contentList[self.TEMPLATE_AUTHOR_POSITION] = \
-        #     self.contentList[self.TEMPLATE_AUTHOR_POSITION].format(self.setupData.getAuthor())
-        #
-        # self.contentList[self.TEMPLATE_AUTHOREMAIL_POSITION] = \
-        #     self.contentList[self.TEMPLATE_AUTHOREMAIL_POSITION].format(self.setupData.getAuthorEmail())
-        #
-        # self.contentList[self.TEMPLATE_PACKAGE_POSITION] = \
-        #     self.contentList[self.TEMPLATE_PACKAGE_POSITION].format(self.setupData.getPackage())
-        #
-        # self.contentList[self.TEMPLATE_ENTRYPOINTS_POSITION] = \
-        #     self.contentList[self.TEMPLATE_ENTRYPOINTS_POSITION].format(self.setupData.getEntryPoint(), self.setupData.getPackage())
 
         return self
 

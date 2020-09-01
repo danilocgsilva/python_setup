@@ -43,8 +43,14 @@ def savePhysicallyInFs(returned, expected, datetime, temporary_folder = None):
         temporary_folder = tempfile.gettempdir()
     testing_hash = Helpers().getStringTime(datetime)
     os.chdir(temporary_folder)
-    open(testing_hash + "-returned", 'a').close()
-    open(testing_hash + "-expected", 'a').close()
+
+    write_to_file_and_close(testing_hash + "-returned", returned)
+    write_to_file_and_close(testing_hash + "-expected", expected)
 
     return testing_hash
+
+def write_to_file_and_close(file_name: str, content: str):
+    file_returned_resource = open(file_name, 'a')
+    file_returned_resource.write(content)
+    file_returned_resource.close()
 

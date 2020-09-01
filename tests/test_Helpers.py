@@ -38,5 +38,3 @@ class test_Helpers(unittest.TestCase):
         savePhysicallyInFs("a", "a", datetime_custom_date, temporary_test_directory)
         expected_file_list = ["20190806_09h08m01s-546434-expected", "20190806_09h08m01s-546434-returned"]
         self.assertListEqual(expected_file_list, os.listdir())
-
-
