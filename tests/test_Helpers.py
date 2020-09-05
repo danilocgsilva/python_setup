@@ -37,4 +37,7 @@ class test_Helpers(unittest.TestCase):
         datetime_custom_date = datetime.datetime.strptime("06.08.2019 09:08:01,546434", "%d.%m.%Y %H:%M:%S,%f")
         savePhysicallyInFs("a", "a", datetime_custom_date, temporary_test_directory)
         expected_file_list = ["20190806_09h08m01s-546434-expected", "20190806_09h08m01s-546434-returned"]
-        self.assertListEqual(expected_file_list, os.listdir())
+        self.assertListEqual(
+            sorted(expected_file_list), 
+            sorted(os.listdir())
+        )

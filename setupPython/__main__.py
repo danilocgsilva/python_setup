@@ -9,11 +9,6 @@ import os
 
 def main():
 
-    if len(os.listdir()) > 0:
-        print("There are files in this folder.")
-        print("Please, create an empty dir, go there and then you can create an installable Python script.")
-        exit()
-
     scaffold = Scaffold().setBasePath(".")
 
     setupDataFilled = fillsSetupData(SetupData())
