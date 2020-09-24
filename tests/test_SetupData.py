@@ -111,3 +111,15 @@ class test_SetupData(unittest.TestCase):
             setAuthorEmail("contact@danilocgsilva.me").\
             setEntryPoint("executehere")
         self.assertTrue(setupData.isFullFilled())
+
+    def test_isFullFilledWithoutUrl(self):
+        setupData = SetupData().\
+            setVersion("2.2.1").\
+            setName("my-app-name").\
+            setDescription("This is the description of my application.").\
+            setKeywords("those are the keywords").\
+            setAuthor("Danilo Silva").\
+            setAuthorEmail("contact@danilocgsilva.me").\
+            setPackage("thepackage"). \
+            setEntryPoint("executehere")
+        self.assertTrue(setupData.isFullFilled())

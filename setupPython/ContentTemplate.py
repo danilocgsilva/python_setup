@@ -20,7 +20,10 @@ class ContentTemplate:
     def setSetupData(self, setupData: SetupData):
 
         if not setupData.isFullFilled():
-            raise Exception("There are missing informations in the setupData object.")
+            message = "There are missing informations in the setupData object:"
+            for missingDataKey in setupData.missingFields:
+                message += "\n" + missingDataKey
+            raise Exception(message)
 
         forged_list = []
 

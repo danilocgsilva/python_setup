@@ -10,15 +10,17 @@ class SetupData:
             "version": "0.0.1",
             "description": None,
             "keywords": None,
-            "url": None,
             "author": None,
             "authorEmail": None,
             "package": None
         }
 
         self.nonRequiredData = {
-            "entryPoint": None
+            "entryPoint": None,
+            "url": None
         }
+
+        self.missingFields = []
 
     def setName(self, name: str):
         self.requiredData["name"] = name
@@ -49,10 +51,10 @@ class SetupData:
         return self
 
     def getUrl(self) -> str:
-        return self.requiredData["url"]
+        return self.nonRequiredData["url"]
 
     def setUrl(self, url: str):
-        self.requiredData["url"] = url
+        self.nonRequiredData["url"] = url
         return self
 
     def getAuthor(self) -> str:
@@ -97,6 +99,8 @@ class SetupData:
     def isFullFilled(self) -> bool:
         for key in self.requiredData:
             if self.requiredData[key] is None or self.requiredData[key] == "":
+                self.missingFields.append(key)
+            if len(self.missingFields) > 0:
                 return False
         return True
 
