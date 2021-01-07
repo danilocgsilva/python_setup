@@ -6,11 +6,12 @@ from setupPython.GenerateStubScript import GenerateStubScript
 from setupPython.Scaffold import Scaffold
 import os
 
-
 def main():
 
     scaffold = Scaffold().setBasePath(".")
 
+    # TODO Allow no keywords
+    # TODO Do not write to README.md if already present
     setupDataFilled = fillsSetupData(SetupData())
     scaffold.setPackage(setupDataFilled.getPackage())
 
