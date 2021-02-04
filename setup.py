@@ -1,6 +1,6 @@
 from setuptools import setup
 
-VERSION = "1.0.3"
+VERSION = "1.0.5"
 
 def readme():
     with open("README.md") as file:
@@ -8,7 +8,7 @@ def readme():
 
 
 setup(
-    name="python_seytup",
+    name="python_setup",
     version=VERSION,
     description="Creates a template installable script in python.",
     long_description_content_type="text/markdown",
